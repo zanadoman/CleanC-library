@@ -206,7 +206,7 @@ int ladd(list **listptr, double value)
     nodeNew->lValue = value;
     nodeNew->lNext = NULL;
     nodeNew->lPrev = NULL;
-    
+
     nodeNew->lNext = *listptr;
     if (*listptr != NULL)
     {
@@ -256,25 +256,19 @@ int lremove(list **listptr, int index)
     {
         nodeToRemove = nodeToRemove->lPrev;
     }
-
-    if (*listptr == nodeToRemove)
-    {
-        *listptr = nodeToRemove->lNext;
-        if (*listptr != NULL)
-        {
-            (*listptr)->lPrev = NULL;
-        }
-    }
-    else
+    if (nodeToRemove->lPrev != NULL)
     {
         nodeToRemove->lPrev->lNext = nodeToRemove->lNext;
-        if (nodeToRemove->lNext != NULL)
-        {
-            nodeToRemove->lNext->lPrev = nodeToRemove->lPrev;
-        }
     }
-    nodeToRemove->lNext = NULL;
-    nodeToRemove->lPrev = NULL;
+    if (nodeToRemove->lNext != NULL)
+    {
+        nodeToRemove->lNext->lPrev = nodeToRemove->lPrev;
+    }
+    if (nodeToRemove == *listptr)
+    {
+        *listptr = nodeToRemove->lNext;
+    }
+    nodeToRemove->lPrev = nodeToRemove->lNext = NULL;
     return 0;
 }
 double lvalue(list *listptr, int index)
