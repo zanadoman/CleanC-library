@@ -73,7 +73,7 @@ int scanvoid()
 }
 
 // Array functions
-int areverse(void *array, long arraySize, char arrayType)
+/*int areverse(void *array, long arraySize, char arrayType)
 {
     long temp;
     switch (arrayType)
@@ -140,7 +140,7 @@ int areverse(void *array, long arraySize, char arrayType)
         break;
     }
     return 0;
-}
+}*/
 
 // Variable functions
 int swapc(void *a, void *b, char size)
@@ -206,6 +206,7 @@ int ladd(list **listptr, double value)
     nodeNew->lValue = value;
     nodeNew->lNext = NULL;
     nodeNew->lPrev = NULL;
+    
     nodeNew->lNext = *listptr;
     if (*listptr != NULL)
     {
@@ -215,9 +216,9 @@ int ladd(list **listptr, double value)
     nodeNew->lPrev = NULL;
     return 0;
 }
-int linsert(list **listptr, int index, double value)
+int linsert(list *listptr, int index, double value)
 {
-    list *nodeInsertAfter = *listptr;
+    list *nodeInsertAfter = listptr;
     while (nodeInsertAfter->lNext != NULL)
     {
         nodeInsertAfter = nodeInsertAfter->lNext;
@@ -230,14 +231,19 @@ int linsert(list **listptr, int index, double value)
     nodeNew->lValue = value;
     nodeNew->lNext = NULL;
     nodeNew->lPrev = NULL;
-    nodeNew->lNext = nodeInsertAfter->lNext;
-    if (nodeNew->lNext != NULL)
+    if (nodeInsertAfter->lNext == NULL)
     {
-        nodeNew->lNext->lPrev = nodeInsertAfter;
+        nodeNew->lPrev = nodeInsertAfter;
+        nodeNew->lNext = NULL;
+        nodeInsertAfter->lNext = nodeNew; 
     }
-    nodeNew->lPrev = nodeInsertAfter;
-    nodeInsertAfter->lNext = nodeNew;
-    return 0;
+    else
+    {
+        nodeNew->lPrev = nodeInsertAfter;
+        nodeNew->lNext = nodeInsertAfter->lNext;
+        nodeInsertAfter->lNext = nodeNew;
+        nodeNew->lNext->lPrev = nodeNew; 
+    }
 }
 int lremove(list **listptr, int index)
 {

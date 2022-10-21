@@ -43,7 +43,7 @@ double scandouble();
 int scanvoid();
 
 // Array functions
-int areverse(void *array, long sizeElement, char sizeArray);
+//int areverse(void *array, long sizeElement, char sizeArray);
 
 // Variable functions
 int swapc(void *a, void *b, char size);
@@ -51,7 +51,7 @@ int swapm(void *a, void *b, char size);
 
 // List functions (Declaring a list: list *listname = NULL;)
 int ladd(list **listptr, double value);
-int linsert(list **listptr, int index, double value);
+int linsert(list *listptr, int index, double value);
 int lremove(list **listptr, int index);
 double lvalue(list *listptr, int index);
 int lchange(list *listptr, int index, int value);
