@@ -30,12 +30,22 @@ struct listNode
 };
 typedef struct listNode list;
 
+// Array functions definitions
+int areverseChar(array *a);
+int areverseShort(array *a);
+int areverseInt(array *a);
+int areverseLong(array *a);
+int areverseFloat(array *a);
+int areverseDouble(array *a);
+
+// Variable functions definitions
 int swapmChar(void *a, void *b);
 int swapmShort(void *a, void *b);
 int swapmInt(void *a, void *b);
 int swapmLong(void *a, void *b);
 int swapmFloat(void *a, void *b);
 int swapmDouble(void *a, void *b);
+
 
 // IO functions
 long scanint()
@@ -77,10 +87,58 @@ int scanvoid()
     return 0;
 }
 
-// Array functions
-int areverse(array *a)
+// Array functions declarations
+int areverse(array *a, char size)
 {
-    for (int *i = a->ptr, j = 1; i < (int *)a->ptr + a->length / 2; i++, j++)
+    switch (size)
+    {
+    case 1:
+        areverseChar(a);
+        break;
+    case 2:
+        areverseShort(a);
+        break;
+    case 3:
+        areverseInt(a);
+        break;
+    case 4:
+        areverseLong(a);
+        break;
+    case 5:
+        areverseFloat(a);
+        break;
+    case 6:
+        areverseDouble(a);
+        break;
+    }
+    return 0;
+}
+int areverseChar(array *a)
+{
+    int j = 1;
+    for (char *i = a->ptr; i < (char *)a->ptr + a->length / 2; i++, j++)
+    {
+        *i += *((char *)a->ptr + a->length - j);
+        *((char *)a->ptr + a->length- j) = *i - *((char *)a->ptr + a->length - j);
+        *i = *i - *((char *)a->ptr + a->length - j);
+    }
+    return 0;
+}
+int areverseShort(array *a)
+{
+    int j = 1;
+    for (short *i = a->ptr; i < (short *)a->ptr + a->length / 2; i++, j++)
+    {
+        *i += *((short *)a->ptr + a->length - j);
+        *((short *)a->ptr + a->length- j) = *i - *((short *)a->ptr + a->length - j);
+        *i = *i - *((short *)a->ptr + a->length - j);
+    }
+    return 0;
+}
+int areverseInt(array *a)
+{
+    int j = 1;
+    for (int *i = a->ptr; i < (int *)a->ptr + a->length / 2; i++, j++)
     {
         *i += *((int *)a->ptr + a->length - j);
         *((int *)a->ptr + a->length- j) = *i - *((int *)a->ptr + a->length - j);
@@ -88,8 +146,41 @@ int areverse(array *a)
     }
     return 0;
 }
+int areverseLong(array *a)
+{
+    int j = 1;
+    for (long *i = a->ptr; i < (long *)a->ptr + a->length / 2; i++, j++)
+    {
+        *i += *((long *)a->ptr + a->length - j);
+        *((long *)a->ptr + a->length- j) = *i - *((long *)a->ptr + a->length - j);
+        *i = *i - *((long *)a->ptr + a->length - j);
+    }
+    return 0;
+}
+int areverseFloat(array *a)
+{
+    int j = 1;
+    for (float *i = a->ptr; i < (float *)a->ptr + a->length / 2; i++, j++)
+    {
+        *i += *((float *)a->ptr + a->length - j);
+        *((float *)a->ptr + a->length- j) = *i - *((float *)a->ptr + a->length - j);
+        *i = *i - *((float *)a->ptr + a->length - j);
+    }
+    return 0;
+}
+int areverseDouble(array *a)
+{
+    int j = 1;
+    for (double *i = a->ptr; i < (double *)a->ptr + a->length / 2; i++, j++)
+    {
+        *i += *((double *)a->ptr + a->length - j);
+        *((double *)a->ptr + a->length- j) = *i - *((double *)a->ptr + a->length - j);
+        *i = *i - *((double *)a->ptr + a->length - j);
+    }
+    return 0;
+}
 
-// Variable functions
+// Variable functions declarations
 int swapc(void *a, void *b, char size)
 {
     switch (size)

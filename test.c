@@ -13,18 +13,19 @@ int printlist(list *head)
 
 int main()
 {
-    int a[] = {1, 2, 3, 4, 5, 6, 7};
+    char a[] = "doman";
     array tomb;
     tomb.ptr = a;
-    tomb.length = 7;
-    tomb.type = INT;
+    tomb.length = 5;
+    tomb.type = CHAR;
 
-    areverse(&tomb);
+    areverse(&tomb, tomb.type);
 
-    for (int *i = tomb.ptr; i < (int *)tomb.ptr + tomb.length; i++)
+    for (char *i = tomb.ptr; i < (char *)tomb.ptr + tomb.length; i++)
     {
-        printf("%d ", *i);
+        printf("%c", *i);
     }
+    printf("\n");
     
 
     return 0;

@@ -42,7 +42,7 @@ double scandouble();
 int scanvoid();
 
 // Array functions
-int areverse(array *a);
+int areverse(array *a, char size);
 
 // Variable functions
 int swapc(void *a, void *b, char size);
