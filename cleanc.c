@@ -2,7 +2,7 @@
 Developed by: Doman Zana, for the sake of humanity
 and to make C a clean and modern programming language. */
 
-//Includes
+// Includes
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -17,8 +17,7 @@ struct arrayDef
 {
     void *ptr;
     char type;
-    int size;
-    bool ordered;
+    int length;
 };
 typedef struct arrayDef array;
 
@@ -31,6 +30,12 @@ struct listNode
 };
 typedef struct listNode list;
 
+int swapmChar(void *a, void *b);
+int swapmShort(void *a, void *b);
+int swapmInt(void *a, void *b);
+int swapmLong(void *a, void *b);
+int swapmFloat(void *a, void *b);
+int swapmDouble(void *a, void *b);
 
 // IO functions
 long scanint()
@@ -73,74 +78,16 @@ int scanvoid()
 }
 
 // Array functions
-/*int areverse(void *array, long arraySize, char arrayType)
+int areverse(array *a)
 {
-    long temp;
-    switch (arrayType)
+    for (int *i = a->ptr, j = 1; i < (int *)a->ptr + a->length / 2; i++, j++)
     {
-    case 1:
-        char *arrayStart1 = (char *)array;
-        char *arrayEnd1 = arrayStart1 + --arraySize;
-        for (; arrayStart1 < arrayEnd1; arrayStart1++, arrayEnd1--)
-        {
-            temp = *arrayStart1;
-            *arrayStart1 = *arrayEnd1;
-            *arrayEnd1 = temp;
-        }
-        break;
-    case 2:
-        short *arrayStart2 = (short *)array;
-        short *arrayEnd2 = arrayStart2 + --arraySize;
-        for (; arrayStart2 < arrayEnd2; arrayStart2++, arrayEnd2--)
-        {
-            temp = *arrayStart2;
-            *arrayStart2 = *arrayEnd2;
-            *arrayEnd2 = temp;
-        }
-        break;
-    case 3:
-        int *arrayStart3 = (int *)array;
-        int *arrayEnd3 = arrayStart3 + --arraySize;
-        for (; arrayStart3 < arrayEnd3; arrayStart3++, arrayEnd3--)
-        {
-            temp = *arrayStart3;
-            *arrayStart3 = *arrayEnd3;
-            *arrayEnd3 = temp;
-        }
-        break;
-    case 4:
-        long *arrayStart4 = (long *)array;
-        long *arrayEnd4 = arrayStart4 + --arraySize;
-        for (; arrayStart4 < arrayEnd4; arrayStart4++, arrayEnd4--)
-        {
-            temp = *arrayStart4;
-            *arrayStart4 = *arrayEnd4;
-            *arrayEnd4 = temp;
-        }
-        break;
-    case 5:
-        float *arrayStart5 = (float *)array;
-        float *arrayEnd5 = arrayStart5 + --arraySize;
-        for (; arrayStart5 < arrayEnd5; arrayStart5++, arrayEnd5--)
-        {
-            temp = *arrayStart5;
-            *arrayStart5 = *arrayEnd5;
-            *arrayEnd5 = temp;
-        }
-        break;
-    case 6:
-        double *arrayStart6 = (double *)array;
-        double *arrayEnd6 = arrayStart6 + --arraySize;
-        for (; arrayStart6 < arrayEnd6; arrayStart6++, arrayEnd6--)
-        {
-            temp = *arrayStart6;
-            *arrayStart6 = *arrayEnd6;
-            *arrayEnd6 = temp;
-        }
-        break;
+        *i += *((int *)a->ptr + a->length - j);
+        *((int *)a->ptr + a->length- j) = *i - *((int *)a->ptr + a->length - j);
+        *i = *i - *((int *)a->ptr + a->length - j);
     }
     return 0;
-}*/
+}
 
 // Variable functions
 int swapc(void *a, void *b, char size)
@@ -172,30 +119,69 @@ int swapc(void *a, void *b, char size)
 }
 int swapm(void *a, void *b, char size)
 {
-    long temp;
     switch (size)
     {
     case 1:
-        temp = *(char *)a;
-        *(char *)a = *(char *)b;
-        *(char *)b = temp;
+        swapmChar(a, b);
         break;
     case 2:
-        temp = *(short *)a;
-        *(short *)a = *(short *)b;
-        *(short *)b = temp;
+        swapmShort(a, b);
+        break;
+    case 3:
+        swapmInt(a, b);
         break;
     case 4:
-        temp = *(int *)a;
-        *(int *)a = *(int *)b;
-        *(int *)b = temp;
+        swapmLong(a, b);
         break;
-    case 8:
-        temp = *(long *)a;
-        *(long *)a = *(long *)b;
-        *(long *)b = temp;
+    case 5:
+        swapmFloat(a, b);
+        break;
+    case 6:
+        swapmDouble(a, b);
         break;
     }
+    return 0;
+}
+int swapmChar(void *a, void *b)
+{
+    char temp = *(char *)a;
+    *(char *)a = *(char *)b;
+    *(char *)b = temp;
+    return 0;
+}
+int swapmShort(void *a, void *b)
+{
+    short temp = *(short *)a;
+    *(short *)a = *(short *)b;
+    *(short *)b = temp;
+    return 0;
+}
+int swapmInt(void *a, void *b)
+{
+    int temp = *(int *)a;
+    *(int *)a = *(int *)b;
+    *(int *)b = temp;
+    return 0;
+}
+int swapmLong(void *a, void *b)
+{
+    long temp = *(long *)a;
+    *(long *)a = *(long *)b;
+    *(long *)b = temp;
+    return 0;
+}
+int swapmFloat(void *a, void *b)
+{
+    float temp = *(float *)a;
+    *(float *)a = *(float *)b;
+    *(float *)b = temp;
+    return 0;
+}
+int swapmDouble(void *a, void *b)
+{
+    double temp = *(double *)a;
+    *(double *)a = *(double *)b;
+    *(double *)b = temp;
     return 0;
 }
 
@@ -206,7 +192,6 @@ int ladd(list **listptr, double value)
     nodeNew->lValue = value;
     nodeNew->lNext = NULL;
     nodeNew->lPrev = NULL;
-
     nodeNew->lNext = *listptr;
     if (*listptr != NULL)
     {
@@ -235,14 +220,14 @@ int linsert(list *listptr, int index, double value)
     {
         nodeNew->lPrev = nodeInsertAfter;
         nodeNew->lNext = NULL;
-        nodeInsertAfter->lNext = nodeNew; 
+        nodeInsertAfter->lNext = nodeNew;
     }
     else
     {
         nodeNew->lPrev = nodeInsertAfter;
         nodeNew->lNext = nodeInsertAfter->lNext;
         nodeInsertAfter->lNext = nodeNew;
-        nodeNew->lNext->lPrev = nodeNew; 
+        nodeNew->lNext->lPrev = nodeNew;
     }
 }
 int lremove(list **listptr, int index)

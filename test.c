@@ -13,21 +13,19 @@ int printlist(list *head)
 
 int main()
 {
-    list *lista = NULL;
+    int a[] = {1, 2, 3, 4, 5, 6, 7};
+    array tomb;
+    tomb.ptr = a;
+    tomb.length = 7;
+    tomb.type = INT;
 
-    for (int i = 0; i < 25; i++)
+    areverse(&tomb);
+
+    for (int *i = tomb.ptr; i < (int *)tomb.ptr + tomb.length; i++)
     {
-        ladd(&lista, i);
+        printf("%d ", *i);
     }
-
-    lremove(&lista, 24);
-    lremove(&lista, 0);
-    lreverse(lista);
-    linsert(lista, 0, 69);
-    ladd(&lista, 69);
-    lreverse(lista);
-
-    printlist(lista);
+    
 
     return 0;
 }

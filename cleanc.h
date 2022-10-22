@@ -23,8 +23,7 @@ struct arrayDef
 {
     void *ptr;
     char type;
-    int size;
-    bool ordered;
+    int length;
 };
 typedef struct arrayDef array;
 
@@ -43,7 +42,7 @@ double scandouble();
 int scanvoid();
 
 // Array functions
-//int areverse(void *array, long sizeElement, char sizeArray);
+int areverse(array *a);
 
 // Variable functions
 int swapc(void *a, void *b, char size);
