@@ -36,9 +36,8 @@ struct listNode
 };
 typedef struct listNode list;
 
+
 // IO functions
-long scanint();
-double scandouble();
 int scanvoid();
 
 // Array functions

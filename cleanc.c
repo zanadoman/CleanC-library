@@ -30,48 +30,7 @@ struct listNode
 };
 typedef struct listNode list;
 
-// Variable functions definitions
-int swapChar(void *a, void *b);
-int swapShort(void *a, void *b);
-int swapInt(void *a, void *b);
-int swapLong(void *a, void *b);
-int swapFloat(void *a, void *b);
-int swapDouble(void *a, void *b);
-
-
 // IO functions
-long scanint()
-{
-    long input;
-    char correct, empty;
-    do
-    {
-        correct = 0;
-        if (scanf("%ld", &input) != 1)
-        {
-            correct = 1;
-            while ((empty = getchar()) != '\n')
-                ;
-        }
-    } while (correct);
-    return input;
-}
-double scandouble()
-{
-    double input;
-    char correct, empty;
-    do
-    {
-        correct = 0;
-        if (scanf("%lf", &input) != 1)
-        {
-            correct = 1;
-            while ((empty = getchar()) != '\n')
-                ;
-        }
-    } while (correct);
-    return input;
-}
 int scanvoid()
 {
     while (getchar() != '\n')
@@ -87,7 +46,7 @@ int areverse(array *a)
         char *tempA = (char *)a->ptr;
         char *tempB = (char *)a->ptr + a->length - 1;
         short temp;
-        for (;tempA < tempB; tempA++, tempB--)
+        for (; tempA < tempB; tempA++, tempB--)
         {
             temp = *tempA;
             *tempA = *tempB;
@@ -100,7 +59,7 @@ int areverse(array *a)
         short *tempA = (short *)a->ptr;
         short *tempB = (short *)a->ptr + a->length - 1;
         short temp;
-        for (;tempA < tempB; tempA++, tempB--)
+        for (; tempA < tempB; tempA++, tempB--)
         {
             temp = *tempA;
             *tempA = *tempB;
@@ -113,7 +72,7 @@ int areverse(array *a)
         int *tempA = (int *)a->ptr;
         int *tempB = (int *)a->ptr + a->length - 1;
         int temp;
-        for (;tempA < tempB; tempA++, tempB--)
+        for (; tempA < tempB; tempA++, tempB--)
         {
             temp = *tempA;
             *tempA = *tempB;
@@ -126,7 +85,7 @@ int areverse(array *a)
         long *tempA = (long *)a->ptr;
         long *tempB = (long *)a->ptr + a->length - 1;
         long temp;
-        for (;tempA < tempB; tempA++, tempB--)
+        for (; tempA < tempB; tempA++, tempB--)
         {
             temp = *tempA;
             *tempA = *tempB;
@@ -139,7 +98,7 @@ int areverse(array *a)
         float *tempA = (float *)a->ptr;
         float *tempB = (float *)a->ptr + a->length - 1;
         float temp;
-        for (;tempA < tempB; tempA++, tempB--)
+        for (; tempA < tempB; tempA++, tempB--)
         {
             temp = *tempA;
             *tempA = *tempB;
@@ -152,7 +111,7 @@ int areverse(array *a)
         double *tempA = (double *)a->ptr;
         double *tempB = (double *)a->ptr + a->length - 1;
         double temp;
-        for (;tempA < tempB; tempA++, tempB--)
+        for (; tempA < tempB; tempA++, tempB--)
         {
             temp = *tempA;
             *tempA = *tempB;
@@ -166,70 +125,49 @@ int areverse(array *a)
 // Variable functions declarations
 int swap(void *a, void *b, char size)
 {
-    switch (size)
+    if (size == 1)
     {
-    case 1:
-        swapChar(a, b);
-        break;
-    case 2:
-        swapShort(a, b);
-        break;
-    case 3:
-        swapInt(a, b);
-        break;
-    case 4:
-        swapLong(a, b);
-        break;
-    case 5:
-        swapFloat(a, b);
-        break;
-    case 6:
-        swapDouble(a, b);
-        break;
+        char temp = *(char *)a;
+        *(char *)a = *(char *)b;
+        *(char *)b = temp;
+        return 0;
     }
-    return 0;
-}
-int swapChar(void *a, void *b)
-{
-    char temp = *(char *)a;
-    *(char *)a = *(char *)b;
-    *(char *)b = temp;
-    return 0;
-}
-int swapShort(void *a, void *b)
-{
-    short temp = *(short *)a;
-    *(short *)a = *(short *)b;
-    *(short *)b = temp;
-    return 0;
-}
-int swapInt(void *a, void *b)
-{
-    int temp = *(int *)a;
-    *(int *)a = *(int *)b;
-    *(int *)b = temp;
-    return 0;
-}
-int swapLong(void *a, void *b)
-{
-    long temp = *(long *)a;
-    *(long *)a = *(long *)b;
-    *(long *)b = temp;
-    return 0;
-}
-int swapFloat(void *a, void *b)
-{
-    float temp = *(float *)a;
-    *(float *)a = *(float *)b;
-    *(float *)b = temp;
-    return 0;
-}
-int swapDouble(void *a, void *b)
-{
-    double temp = *(double *)a;
-    *(double *)a = *(double *)b;
-    *(double *)b = temp;
-    return 0;
+    else if (size == 2)
+    {
+        short temp = *(short *)a;
+        *(short *)a = *(short *)b;
+        *(short *)b = temp;
+        return 0;
+    }
+    else if (size == 3)
+    {
+        int temp = *(int *)a;
+        *(int *)a = *(int *)b;
+        *(int *)b = temp;
+        return 0;
+    }
+    else if (size == 4)
+    {
+        long temp = *(long *)a;
+        *(long *)a = *(long *)b;
+        *(long *)b = temp;
+        return 0;
+    }
+    else if (size == 5)
+    {
+        float temp = *(float *)a;
+        *(float *)a = *(float *)b;
+        *(float *)b = temp;
+        return 0;
+    }
+    else if (size == 6)
+    {
+        double temp = *(double *)a;
+        *(double *)a = *(double *)b;
+        *(double *)b = temp;
+        return 0;
+    }
+    return 1;
 }
 
 // List functions

@@ -3,11 +3,11 @@
 
 int main()
 {
-    double x = 10;
-    double y = 20;
+    long x = 423;
+    long y = 8678;
 
-    swap(&x, &y, DOUBLE);
-    printf("%lf, %lf\n", x, y);
+    swap(&x, &y, LONG);
+    printf("%ld, %ld\n", x, y);
 
     return 0;
 }
