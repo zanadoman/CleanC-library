@@ -38,6 +38,54 @@ int scanvoid()
     return 0;
 }
 
+// Variable functions declarations
+int swap(void *a, void *b, char size)
+{
+    if (size == 1)
+    {
+        char temp = *(char *)a;
+        *(char *)a = *(char *)b;
+        *(char *)b = temp;
+        return 0;
+    }
+    else if (size == 2)
+    {
+        short temp = *(short *)a;
+        *(short *)a = *(short *)b;
+        *(short *)b = temp;
+        return 0;
+    }
+    else if (size == 3)
+    {
+        int temp = *(int *)a;
+        *(int *)a = *(int *)b;
+        *(int *)b = temp;
+        return 0;
+    }
+    else if (size == 4)
+    {
+        long temp = *(long *)a;
+        *(long *)a = *(long *)b;
+        *(long *)b = temp;
+        return 0;
+    }
+    else if (size == 5)
+    {
+        float temp = *(float *)a;
+        *(float *)a = *(float *)b;
+        *(float *)b = temp;
+        return 0;
+    }
+    else if (size == 6)
+    {
+        double temp = *(double *)a;
+        *(double *)a = *(double *)b;
+        *(double *)b = temp;
+        return 0;
+    }
+    return 1;
+}
+
 // Array functions declarations
 int areverse(array *a)
 {
@@ -117,54 +165,6 @@ int areverse(array *a)
             *tempA = *tempB;
             *tempB = temp;
         }
-        return 0;
-    }
-    return 1;
-}
-
-// Variable functions declarations
-int swap(void *a, void *b, char size)
-{
-    if (size == 1)
-    {
-        char temp = *(char *)a;
-        *(char *)a = *(char *)b;
-        *(char *)b = temp;
-        return 0;
-    }
-    else if (size == 2)
-    {
-        short temp = *(short *)a;
-        *(short *)a = *(short *)b;
-        *(short *)b = temp;
-        return 0;
-    }
-    else if (size == 3)
-    {
-        int temp = *(int *)a;
-        *(int *)a = *(int *)b;
-        *(int *)b = temp;
-        return 0;
-    }
-    else if (size == 4)
-    {
-        long temp = *(long *)a;
-        *(long *)a = *(long *)b;
-        *(long *)b = temp;
-        return 0;
-    }
-    else if (size == 5)
-    {
-        float temp = *(float *)a;
-        *(float *)a = *(float *)b;
-        *(float *)b = temp;
-        return 0;
-    }
-    else if (size == 6)
-    {
-        double temp = *(double *)a;
-        *(double *)a = *(double *)b;
-        *(double *)b = temp;
         return 0;
     }
     return 1;

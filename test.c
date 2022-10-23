@@ -2,18 +2,18 @@
 #include "cleanc.h"
 
 int iofunctions();
-int arrayfunctions();
 int variablefunctions();
+int arrayfunctions();
 int listfunctions();
 int mathfunctions();
 
 int main()
 {
-    // iofunctions();
-    // arrayfunctions();
-    // variablefunctions();
-    // listfunctions();
-    // mathfunctions();
+    iofunctions();
+    variablefunctions();
+    arrayfunctions();
+    listfunctions();
+    mathfunctions();
     return 0;
 }
 
@@ -21,6 +21,19 @@ int iofunctions()
 {
     printf("Flushing the input buffer:\n");
     scanvoid();
+
+    return 0;
+}
+
+int variablefunctions()
+{
+    double a = 24.532;
+    double b = 55325.43;
+
+    printf("Variables:\na: %lf, b: %lf", a, b);
+    
+    swap(&a, &b, DOUBLE);
+    printf("\nSwapping variables:\na: %lf, b: %lf\n", a, b);
 
     return 0;
 }
@@ -45,19 +58,7 @@ int arrayfunctions()
     {
         printf("%d ", a[i]);
     }
-
-    return 0;
-}
-
-int variablefunctions()
-{
-    double a = 24.532;
-    double b = 55325.43;
-
-    printf("Variables:\na: %lf, b: %lf", a, b);
-    
-    swap(&a, &b, DOUBLE);
-    printf("\nSwapping variables:\na: %lf, b: %lf\n", a, b);
+    printf("\n");
 
     return 0;
 }
