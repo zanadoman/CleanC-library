@@ -7,7 +7,7 @@ than give the name of exe file you want to generate (without the .exe extension)
 choose the quantity of codes (in the current case you should choose 2), in the end
 enter the name of the c files with their .c extension (currently: test.c and cleanc.c).
 The order doesn't matter.
-(cdebugger.cmd can work standalone, vs code isn't requred)
+(cdebugger.cmd can work standalone, vs code isn't required)
 
 Compile without cdebugger.cmd: gcc -o test test.c cleanc.c -lm
 Than open with: ./test
