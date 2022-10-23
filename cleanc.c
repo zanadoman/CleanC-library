@@ -2,10 +2,12 @@
 Developed by: Doman Zana, for the sake of humanity
 and to make C a clean and modern programming language. */
 
+
 // Includes
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+
 
 // Bool definition
 #define true 1
@@ -29,6 +31,7 @@ struct listNode
     struct listNode *lNext;
 };
 typedef struct listNode list;
+
 
 // IO functions
 int scanvoid()

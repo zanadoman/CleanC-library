@@ -2,6 +2,7 @@
 Developed by: Doman Zana, for the sake of humanity
 and to make C a clean and modern programming language. */
 
+
 // Constants
 #define PI 3.141593
 
@@ -12,6 +13,7 @@ and to make C a clean and modern programming language. */
 #define LONG 4
 #define FLOAT 5
 #define DOUBLE 6
+
 
 // Bool definition
 #define true 1
@@ -58,6 +60,7 @@ int lreverse(list *listptr);
 
 // Math functions
 double root(double radicand, double index);
+
 
 // math.h functions
 double sin(double x);

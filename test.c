@@ -12,7 +12,7 @@ int main()
     // iofunctions();
     // variablefunctions();
     // arrayfunctions();
-    listfunctions();
+    // listfunctions();
     // mathfunctions();
     return 0;
 }
