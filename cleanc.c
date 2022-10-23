@@ -30,21 +30,13 @@ struct listNode
 };
 typedef struct listNode list;
 
-// Array functions definitions
-int areverseChar(array *a);
-int areverseShort(array *a);
-int areverseInt(array *a);
-int areverseLong(array *a);
-int areverseFloat(array *a);
-int areverseDouble(array *a);
-
 // Variable functions definitions
-int swapmChar(void *a, void *b);
-int swapmShort(void *a, void *b);
-int swapmInt(void *a, void *b);
-int swapmLong(void *a, void *b);
-int swapmFloat(void *a, void *b);
-int swapmDouble(void *a, void *b);
+int swapChar(void *a, void *b);
+int swapShort(void *a, void *b);
+int swapInt(void *a, void *b);
+int swapLong(void *a, void *b);
+int swapFloat(void *a, void *b);
+int swapDouble(void *a, void *b);
 
 
 // IO functions
@@ -88,187 +80,151 @@ int scanvoid()
 }
 
 // Array functions declarations
-int areverse(array *a, char size)
+int areverse(array *a)
 {
-    switch (size)
+    if (a->type == 1)
     {
-    case 1:
-        areverseChar(a);
-        break;
-    case 2:
-        areverseShort(a);
-        break;
-    case 3:
-        areverseInt(a);
-        break;
-    case 4:
-        areverseLong(a);
-        break;
-    case 5:
-        areverseFloat(a);
-        break;
-    case 6:
-        areverseDouble(a);
-        break;
+        char *tempA = (char *)a->ptr;
+        char *tempB = (char *)a->ptr + a->length - 1;
+        short temp;
+        for (;tempA < tempB; tempA++, tempB--)
+        {
+            temp = *tempA;
+            *tempA = *tempB;
+            *tempB = temp;
+        }
+        return 0;
     }
-    return 0;
-}
-int areverseChar(array *a)
-{
-    int j = 1;
-    for (char *i = a->ptr; i < (char *)a->ptr + a->length / 2; i++, j++)
+    else if (a->type == 2)
     {
-        *i += *((char *)a->ptr + a->length - j);
-        *((char *)a->ptr + a->length- j) = *i - *((char *)a->ptr + a->length - j);
-        *i = *i - *((char *)a->ptr + a->length - j);
+        short *tempA = (short *)a->ptr;
+        short *tempB = (short *)a->ptr + a->length - 1;
+        short temp;
+        for (;tempA < tempB; tempA++, tempB--)
+        {
+            temp = *tempA;
+            *tempA = *tempB;
+            *tempB = temp;
+        }
+        return 0;
     }
-    return 0;
-}
-int areverseShort(array *a)
-{
-    int j = 1;
-    for (short *i = a->ptr; i < (short *)a->ptr + a->length / 2; i++, j++)
+    else if (a->type == 3)
     {
-        *i += *((short *)a->ptr + a->length - j);
-        *((short *)a->ptr + a->length- j) = *i - *((short *)a->ptr + a->length - j);
-        *i = *i - *((short *)a->ptr + a->length - j);
+        int *tempA = (int *)a->ptr;
+        int *tempB = (int *)a->ptr + a->length - 1;
+        int temp;
+        for (;tempA < tempB; tempA++, tempB--)
+        {
+            temp = *tempA;
+            *tempA = *tempB;
+            *tempB = temp;
+        }
+        return 0;
     }
-    return 0;
-}
-int areverseInt(array *a)
-{
-    int j = 1;
-    for (int *i = a->ptr; i < (int *)a->ptr + a->length / 2; i++, j++)
+    else if (a->type == 4)
     {
-        *i += *((int *)a->ptr + a->length - j);
-        *((int *)a->ptr + a->length- j) = *i - *((int *)a->ptr + a->length - j);
-        *i = *i - *((int *)a->ptr + a->length - j);
+        long *tempA = (long *)a->ptr;
+        long *tempB = (long *)a->ptr + a->length - 1;
+        long temp;
+        for (;tempA < tempB; tempA++, tempB--)
+        {
+            temp = *tempA;
+            *tempA = *tempB;
+            *tempB = temp;
+        }
+        return 0;
     }
-    return 0;
-}
-int areverseLong(array *a)
-{
-    int j = 1;
-    for (long *i = a->ptr; i < (long *)a->ptr + a->length / 2; i++, j++)
+    else if (a->type == 5)
     {
-        *i += *((long *)a->ptr + a->length - j);
-        *((long *)a->ptr + a->length- j) = *i - *((long *)a->ptr + a->length - j);
-        *i = *i - *((long *)a->ptr + a->length - j);
+        float *tempA = (float *)a->ptr;
+        float *tempB = (float *)a->ptr + a->length - 1;
+        float temp;
+        for (;tempA < tempB; tempA++, tempB--)
+        {
+            temp = *tempA;
+            *tempA = *tempB;
+            *tempB = temp;
+        }
+        return 0;
     }
-    return 0;
-}
-int areverseFloat(array *a)
-{
-    int j = 1;
-    for (float *i = a->ptr; i < (float *)a->ptr + a->length / 2; i++, j++)
+    else if (a->type == 6)
     {
-        *i += *((float *)a->ptr + a->length - j);
-        *((float *)a->ptr + a->length- j) = *i - *((float *)a->ptr + a->length - j);
-        *i = *i - *((float *)a->ptr + a->length - j);
+        double *tempA = (double *)a->ptr;
+        double *tempB = (double *)a->ptr + a->length - 1;
+        double temp;
+        for (;tempA < tempB; tempA++, tempB--)
+        {
+            temp = *tempA;
+            *tempA = *tempB;
+            *tempB = temp;
+        }
+        return 0;
     }
-    return 0;
-}
-int areverseDouble(array *a)
-{
-    int j = 1;
-    for (double *i = a->ptr; i < (double *)a->ptr + a->length / 2; i++, j++)
-    {
-        *i += *((double *)a->ptr + a->length - j);
-        *((double *)a->ptr + a->length- j) = *i - *((double *)a->ptr + a->length - j);
-        *i = *i - *((double *)a->ptr + a->length - j);
-    }
-    return 0;
+    return 1;
 }
 
 // Variable functions declarations
-int swapc(void *a, void *b, char size)
+int swap(void *a, void *b, char size)
 {
     switch (size)
     {
     case 1:
-        *(char *)a += *(char *)b;
-        *(char *)b = *(char *)a - *(char *)b;
-        *(char *)a = *(char *)a - *(char *)b;
+        swapChar(a, b);
         break;
     case 2:
-        *(short *)a += *(short *)b;
-        *(short *)b = *(short *)a - *(short *)b;
-        *(short *)a = *(short *)a - *(short *)b;
-        break;
-    case 4:
-        *(int *)a += *(int *)b;
-        *(int *)b = *(int *)a - *(int *)b;
-        *(int *)a = *(int *)a - *(int *)b;
-        break;
-    case 8:
-        *(double *)a += *(double *)b;
-        *(double *)b = *(double *)a - *(double *)b;
-        *(double *)a = *(double *)a - *(double *)b;
-        break;
-    }
-    return 0;
-}
-int swapm(void *a, void *b, char size)
-{
-    switch (size)
-    {
-    case 1:
-        swapmChar(a, b);
-        break;
-    case 2:
-        swapmShort(a, b);
+        swapShort(a, b);
         break;
     case 3:
-        swapmInt(a, b);
+        swapInt(a, b);
         break;
     case 4:
-        swapmLong(a, b);
+        swapLong(a, b);
         break;
     case 5:
-        swapmFloat(a, b);
+        swapFloat(a, b);
         break;
     case 6:
-        swapmDouble(a, b);
+        swapDouble(a, b);
         break;
     }
     return 0;
 }
-int swapmChar(void *a, void *b)
+int swapChar(void *a, void *b)
 {
     char temp = *(char *)a;
     *(char *)a = *(char *)b;
     *(char *)b = temp;
     return 0;
 }
-int swapmShort(void *a, void *b)
+int swapShort(void *a, void *b)
 {
     short temp = *(short *)a;
     *(short *)a = *(short *)b;
     *(short *)b = temp;
     return 0;
 }
-int swapmInt(void *a, void *b)
+int swapInt(void *a, void *b)
 {
     int temp = *(int *)a;
     *(int *)a = *(int *)b;
     *(int *)b = temp;
     return 0;
 }
-int swapmLong(void *a, void *b)
+int swapLong(void *a, void *b)
 {
     long temp = *(long *)a;
     *(long *)a = *(long *)b;
     *(long *)b = temp;
     return 0;
 }
-int swapmFloat(void *a, void *b)
+int swapFloat(void *a, void *b)
 {
     float temp = *(float *)a;
     *(float *)a = *(float *)b;
     *(float *)b = temp;
     return 0;
 }
-int swapmDouble(void *a, void *b)
+int swapDouble(void *a, void *b)
 {
     double temp = *(double *)a;
     *(double *)a = *(double *)b;

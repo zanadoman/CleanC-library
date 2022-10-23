@@ -42,11 +42,10 @@ double scandouble();
 int scanvoid();
 
 // Array functions
-int areverse(array *a, char size);
+int areverse(array *a);
 
 // Variable functions
-int swapc(void *a, void *b, char size);
-int swapm(void *a, void *b, char size);
+int swap(void *a, void *b, char type);
 
 // List functions (Declaring a list: list *listname = NULL;)
 int ladd(list **listptr, double value);
