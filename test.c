@@ -41,9 +41,9 @@ int arrayfunctions()
 
     printf("\nReversing the array:\n");
     areverse(&testarray);
-    for (int *i = testarray.ptr; i < (int *)testarray.ptr + testarray.length; i++)
+    for (int i = 0; i < testarray.length; i++)
     {
-        printf("%d ", *i);
+        printf("%d ", a[i]);
     }
 
     return 0;
