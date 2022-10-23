@@ -25,8 +25,8 @@ typedef struct arrayDef array;
 struct listNode
 {
     double lValue;
-    struct listNode *lNext;
     struct listNode *lPrev;
+    struct listNode *lNext;
 };
 typedef struct listNode list;
 
@@ -175,95 +175,91 @@ int ladd(list **listptr, double value)
 {
     list *nodeNew = malloc(sizeof(struct listNode));
     nodeNew->lValue = value;
+    nodeNew->lPrev = *listptr;
     nodeNew->lNext = NULL;
-    nodeNew->lPrev = NULL;
-    nodeNew->lNext = *listptr;
     if (*listptr != NULL)
     {
-        (*listptr)->lPrev = nodeNew;
+        (*listptr)->lNext = nodeNew;
     }
     *listptr = nodeNew;
-    nodeNew->lPrev = NULL;
     return 0;
 }
 int linsert(list *listptr, int index, double value)
 {
     list *nodeInsertAfter = listptr;
-    while (nodeInsertAfter->lNext != NULL)
-    {
-        nodeInsertAfter = nodeInsertAfter->lNext;
-    }
-    for (int i = 0; i < index; i++)
+    while (nodeInsertAfter->lPrev != NULL)
     {
         nodeInsertAfter = nodeInsertAfter->lPrev;
     }
+    for (int i = 0; i < index; i++)
+    {
+        nodeInsertAfter = nodeInsertAfter->lNext;
+    }
     list *nodeNew = malloc(sizeof(struct listNode));
     nodeNew->lValue = value;
-    nodeNew->lNext = NULL;
-    nodeNew->lPrev = NULL;
-    if (nodeInsertAfter->lNext == NULL)
+    if (nodeInsertAfter->lPrev == NULL)
     {
-        nodeNew->lPrev = nodeInsertAfter;
-        nodeNew->lNext = NULL;
-        nodeInsertAfter->lNext = nodeNew;
+        nodeNew->lNext = nodeInsertAfter;
+        nodeNew->lPrev = NULL;
+        nodeInsertAfter->lPrev = nodeNew;
     }
     else
     {
-        nodeNew->lPrev = nodeInsertAfter;
-        nodeNew->lNext = nodeInsertAfter->lNext;
-        nodeInsertAfter->lNext = nodeNew;
-        nodeNew->lNext->lPrev = nodeNew;
+        nodeNew->lNext = nodeInsertAfter;
+        nodeNew->lPrev = nodeInsertAfter->lPrev;
+        nodeInsertAfter->lPrev = nodeNew;
+        nodeNew->lPrev->lNext = nodeNew;
     }
 }
 int lremove(list **listptr, int index)
 {
     list *nodeToRemove = *listptr;
-    while (nodeToRemove->lNext != NULL)
-    {
-        nodeToRemove = nodeToRemove->lNext;
-    }
-    for (int i = 0; i < index; i++)
+    while (nodeToRemove->lPrev != NULL)
     {
         nodeToRemove = nodeToRemove->lPrev;
     }
-    if (nodeToRemove->lPrev != NULL)
+    for (int i = 0; i < index; i++)
     {
-        nodeToRemove->lPrev->lNext = nodeToRemove->lNext;
+        nodeToRemove = nodeToRemove->lNext;
     }
     if (nodeToRemove->lNext != NULL)
     {
         nodeToRemove->lNext->lPrev = nodeToRemove->lPrev;
     }
+    if (nodeToRemove->lPrev != NULL)
+    {
+        nodeToRemove->lPrev->lNext = nodeToRemove->lNext;
+    }
     if (nodeToRemove == *listptr)
     {
-        *listptr = nodeToRemove->lNext;
+        *listptr = nodeToRemove->lPrev;
     }
-    nodeToRemove->lPrev = nodeToRemove->lNext = NULL;
+    nodeToRemove->lNext = nodeToRemove->lPrev = NULL;
     return 0;
 }
 double lvalue(list *listptr, int index)
 {
     list *temp = listptr;
-    while (temp->lNext != NULL)
+    while (temp->lPrev != NULL)
     {
-        temp = temp->lNext;
+        temp = temp->lPrev;
     }
     for (int i = 0; i < index; i++)
     {
-        temp = temp->lPrev;
+        temp = temp->lNext;
     }
     return temp->lValue;
 }
 int lchange(list *listptr, int index, int value)
 {
     list *temp = listptr;
-    while (temp->lNext != NULL)
+    while (temp->lPrev != NULL)
     {
-        temp = temp->lNext;
+        temp = temp->lPrev;
     }
     for (int i = 0; i < index; i++)
     {
-        temp = temp->lPrev;
+        temp = temp->lNext;
     }
     temp->lValue = value;
     return 0;
@@ -275,7 +271,7 @@ int llength(list *listptr)
     while (temp != NULL)
     {
         length++;
-        temp = temp->lNext;
+        temp = temp->lPrev;
     }
     return length;
 }
@@ -288,7 +284,7 @@ bool lcontains(list *listptr, double value)
         {
             return true;
         }
-        temp = temp->lNext;
+        temp = temp->lPrev;
     }
     return false;
 }
@@ -297,18 +293,18 @@ int lreverse(list *listptr)
     list *tempA = listptr, *tempB = listptr;
     int length = 0;
     double a, b, temp;
-    while (tempB->lNext != NULL)
+    while (tempB->lPrev != NULL)
     {
         length++;
-        tempB = tempB->lNext;
+        tempB = tempB->lPrev;
     }
     for (int i = 0; i < length / 2; i++)
     {
         temp = tempA->lValue;
         tempA->lValue = tempB->lValue;
         tempB->lValue = temp;
-        tempA = tempA->lNext;
-        tempB = tempB->lPrev;
+        tempA = tempA->lPrev;
+        tempB = tempB->lNext;
     }
     return 0;
 }

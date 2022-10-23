@@ -31,8 +31,8 @@ typedef struct arrayDef array;
 struct listNode
 {
     double lValue;
-    struct listNode *lNext;
     struct listNode *lPrev;
+    struct listNode *lNext;
 };
 typedef struct listNode list;
 
