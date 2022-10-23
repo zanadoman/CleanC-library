@@ -9,11 +9,11 @@ int mathfunctions();
 
 int main()
 {
-    iofunctions();
-    variablefunctions();
-    arrayfunctions();
-    listfunctions();
-    mathfunctions();
+    // iofunctions();
+    // variablefunctions();
+    // arrayfunctions();
+    // listfunctions();
+    // mathfunctions();
     return 0;
 }
 
