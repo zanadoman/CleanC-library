@@ -47,6 +47,8 @@ int swap(void *a, void *b, char type);
 
 // Array functions
 int areverse(array *a);
+long strint(char *a);
+double strdouble(char *a);
 
 // List functions (Declaring a list: list *listname = NULL;)
 int ladd(list **listptr, double value);

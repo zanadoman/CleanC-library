@@ -58,7 +58,13 @@ int arrayfunctions()
     {
         printf("%d ", a[i]);
     }
-    printf("\n");
+
+    char intstring[] = "34543";
+    printf("\nConverting string(34543) to int: %d\n", strint(intstring));
+    char doublestring[] = "876.564";
+    printf("Converting double(876.564) to double: %lf\n", strdouble(doublestring));
+    char falseintstring[] = "432.46";
+    printf("Converting double(432.46) to int: %d\n", strint(falseintstring));
 
     return 0;
 }

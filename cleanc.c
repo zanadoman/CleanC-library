@@ -2,12 +2,10 @@
 Developed by: Doman Zana, for the sake of humanity
 and to make C a clean and modern programming language. */
 
-
 // Includes
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-
 
 // Bool definition
 #define true 1
@@ -31,7 +29,6 @@ struct listNode
     struct listNode *lNext;
 };
 typedef struct listNode list;
-
 
 // IO functions
 int scanvoid()
@@ -171,6 +168,57 @@ int areverse(array *a)
         return 0;
     }
     return 1;
+}
+long strint(char *string)
+{
+    double result = 0, powskip = 1;
+    char *size = string;
+    for (; *size != 0; size++)
+    {
+        powskip *= 10;
+    }
+    for (; string < size; string++)
+    {
+        if (47 < *string && *string < 58)
+        {
+            powskip /= 10;
+            result += (*string - 48) * powskip;
+        }
+        else
+        {
+            result /= powskip;
+            break;
+        }
+    }
+    return result;
+}
+double strdouble(char *string)
+{
+    double result = 0, powskip = 1;
+    int floatingpoint = 1;
+    char *size = string;
+    for (; *size != 0; size++)
+    {
+        powskip *= 10;
+    }
+    for (; string < size; string++)
+    {
+        if (47 < *string && *string < 58)
+        {
+            powskip /= 10;
+            result += (*string - 48) * powskip;
+        }
+        else if (*string == 46)
+        {
+            floatingpoint = powskip;
+        }
+        else
+        {
+            result = 0;
+            break;
+        }
+    }
+    return result / floatingpoint;
 }
 
 // List functions
