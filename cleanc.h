@@ -20,15 +20,6 @@ and to make C a clean and modern programming language. */
 #define false 0
 typedef char bool;
 
-// Array definition
-struct arrayDef
-{
-    void *ptr;
-    char type;
-    int length;
-};
-typedef struct arrayDef array;
-
 // List definition
 struct listNode
 {
@@ -46,7 +37,7 @@ int scanvoid();
 int swap(void *a, void *b, char type);
 
 // Array functions
-int areverse(array *a);
+int areverse(void *first, void *last, char type);
 int asort(void *first, void *last, char type);
 long strint(char *a);
 double strdouble(char *a);

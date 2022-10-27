@@ -2,6 +2,7 @@
 Developed by: Doman Zana, for the sake of humanity
 and to make C a clean and modern programming language. */
 
+
 // Includes
 #include <stdio.h>
 #include <stdlib.h>
@@ -12,15 +13,6 @@ and to make C a clean and modern programming language. */
 #define false 0
 typedef char bool;
 
-// Array definition // BUG
-struct arrayDef
-{
-    void *ptr;
-    char type;
-    int length;
-};
-typedef struct arrayDef array;
-
 // List definition // COMPLETE List def
 struct listNode
 {
@@ -29,6 +21,7 @@ struct listNode
     struct listNode *lNext;
 };
 typedef struct listNode list;
+
 
 // IO functions
 int scanvoid() // COMPLETE
@@ -87,78 +80,13 @@ int swap(void *a, void *b, char size) // COMPLETE
 }
 
 // Array functions declarations
-int areverse(array *a) //FIXME
+int areverse(void *first, void *last, char type) // COMPLETE
 {
-    if (a->type == 1)
+    if (type == 3)
     {
-        char *tempA = (char *)a->ptr;
-        char *tempB = (char *)a->ptr + a->length - 1;
-        short temp;
-        for (; tempA < tempB; tempA++, tempB--)
-        {
-            temp = *tempA;
-            *tempA = *tempB;
-            *tempB = temp;
-        }
-        return 0;
-    }
-    else if (a->type == 2)
-    {
-        short *tempA = (short *)a->ptr;
-        short *tempB = (short *)a->ptr + a->length - 1;
-        short temp;
-        for (; tempA < tempB; tempA++, tempB--)
-        {
-            temp = *tempA;
-            *tempA = *tempB;
-            *tempB = temp;
-        }
-        return 0;
-    }
-    else if (a->type == 3)
-    {
-        int *tempA = (int *)a->ptr;
-        int *tempB = (int *)a->ptr + a->length - 1;
         int temp;
-        for (; tempA < tempB; tempA++, tempB--)
-        {
-            temp = *tempA;
-            *tempA = *tempB;
-            *tempB = temp;
-        }
-        return 0;
-    }
-    else if (a->type == 4)
-    {
-        long *tempA = (long *)a->ptr;
-        long *tempB = (long *)a->ptr + a->length - 1;
-        long temp;
-        for (; tempA < tempB; tempA++, tempB--)
-        {
-            temp = *tempA;
-            *tempA = *tempB;
-            *tempB = temp;
-        }
-        return 0;
-    }
-    else if (a->type == 5)
-    {
-        float *tempA = (float *)a->ptr;
-        float *tempB = (float *)a->ptr + a->length - 1;
-        float temp;
-        for (; tempA < tempB; tempA++, tempB--)
-        {
-            temp = *tempA;
-            *tempA = *tempB;
-            *tempB = temp;
-        }
-        return 0;
-    }
-    else if (a->type == 6)
-    {
-        double *tempA = (double *)a->ptr;
-        double *tempB = (double *)a->ptr + a->length - 1;
-        double temp;
+        int *tempA = first;
+        int *tempB = last;
         for (; tempA < tempB; tempA++, tempB--)
         {
             temp = *tempA;
@@ -191,8 +119,9 @@ int asort(void *first, void *last, char type) // COMPLETE
         *(int *)last = temp;
         asort(first, tempFirst, 3);
         asort(tempFirst + 2, last, 3);
+        return 0;
     }
-    return 0;
+    return 1;
 }
 long strint(char *string) // COMPLETE
 {

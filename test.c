@@ -15,8 +15,9 @@ int main()
     // arrayfunctions();
     // listfunctions();
     // mathfunctions();
-    int a[] = {3, 2, 5, 1, 8, 7, 6, 9, 0, 4};
-    asort(a, a + 9, INT);
+    int a[] = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+    asort(a + 2, a + 7, INT);
+    //areverse(a, a + 9, INT);
     for (int i = 0; i < 10; i++)
     {
         printf("%d ", a[i]);
@@ -47,20 +48,16 @@ int variablefunctions()
 int arrayfunctions()
 {
     int a[] = {1, 2, 3, 4, 5};
-    array testarray;
-    testarray.ptr = a;
-    testarray.length = sizeof(a) / sizeof(int);
-    testarray.type = INT;
 
     printf("Testing the array:\n");
-    for (int *i = testarray.ptr; i < (int *)testarray.ptr + testarray.length; i++)
+    for (int i = 0; i < sizeof(a) / sizeof(int); i++)
     {
-        printf("%d ", *i);
+        printf("%d ", a[i]);
     }
 
     printf("\nReversing the array:\n");
-    areverse(&testarray);
-    for (int i = 0; i < testarray.length; i++)
+    areverse(a, a + sizeof(a) / sizeof(int) - 1, INT);
+    for (int i = 0; i < sizeof(a) / sizeof(int); i++)
     {
         printf("%d ", a[i]);
     }
