@@ -12,7 +12,7 @@ and to make C a clean and modern programming language. */
 #define false 0
 typedef char bool;
 
-// Array definition
+// Array definition // BUG
 struct arrayDef
 {
     void *ptr;
@@ -21,7 +21,7 @@ struct arrayDef
 };
 typedef struct arrayDef array;
 
-// List definition
+// List definition // COMPLETE List def
 struct listNode
 {
     double lValue;
@@ -31,7 +31,7 @@ struct listNode
 typedef struct listNode list;
 
 // IO functions
-int scanvoid()
+int scanvoid() // COMPLETE
 {
     while (getchar() != '\n')
         ;
@@ -39,7 +39,7 @@ int scanvoid()
 }
 
 // Variable functions declarations
-int swap(void *a, void *b, char size)
+int swap(void *a, void *b, char size) // COMPLETE
 {
     if (size == 1)
     {
@@ -87,7 +87,7 @@ int swap(void *a, void *b, char size)
 }
 
 // Array functions declarations
-int areverse(array *a)
+int areverse(array *a) //FIXME
 {
     if (a->type == 1)
     {
@@ -169,7 +169,7 @@ int areverse(array *a)
     }
     return 1;
 }
-int asort(void *first, void *last, char type) // TODO quicksort function for array
+int asort(void *first, void *last, char type) // COMPLETE
 {
     if (type == 3 && first < last)
     {
@@ -188,13 +188,13 @@ int asort(void *first, void *last, char type) // TODO quicksort function for arr
         }
         temp = *(tempFirst + 1);
         *(tempFirst + 1) = *(int *)last;
-        *(int *)last = temp;    
+        *(int *)last = temp;
         asort(first, tempFirst, 3);
         asort(tempFirst + 2, last, 3);
     }
     return 0;
 }
-long strint(char *string)
+long strint(char *string) // COMPLETE
 {
     double result = 0, powskip = 1;
     char *size = string;
@@ -217,7 +217,7 @@ long strint(char *string)
     }
     return result;
 }
-double strdouble(char *string)
+double strdouble(char *string) // COMPLETE
 {
     double result = 0, powskip = 1;
     int floatingpoint = 1;
@@ -247,7 +247,7 @@ double strdouble(char *string)
 }
 
 // List functions
-int ladd(list **listptr, double value)
+int ladd(list **listptr, double value) // COMPLETE
 {
     list *nodeNew = malloc(sizeof(struct listNode));
     nodeNew->lValue = value;
@@ -260,7 +260,7 @@ int ladd(list **listptr, double value)
     *listptr = nodeNew;
     return 0;
 }
-int linsert(list *listptr, int index, double value)
+int linsert(list *listptr, int index, double value) // COMPLETE
 {
     list *nodeInsertAfter = listptr;
     while (nodeInsertAfter->lPrev != NULL)
@@ -287,7 +287,7 @@ int linsert(list *listptr, int index, double value)
         nodeNew->lPrev->lNext = nodeNew;
     }
 }
-int lremove(list **listptr, int index)
+int lremove(list **listptr, int index) // COMPLETE
 {
     list *nodeToRemove = *listptr;
     while (nodeToRemove->lPrev != NULL)
@@ -313,7 +313,7 @@ int lremove(list **listptr, int index)
     nodeToRemove->lNext = nodeToRemove->lPrev = NULL;
     return 0;
 }
-double lvalue(list *listptr, int index)
+double lvalue(list *listptr, int index) // COMPLETE
 {
     list *temp = listptr;
     while (temp->lPrev != NULL)
@@ -326,7 +326,7 @@ double lvalue(list *listptr, int index)
     }
     return temp->lValue;
 }
-int lchange(list *listptr, int index, int value)
+int lchange(list *listptr, int index, int value) // COMPLETE
 {
     list *temp = listptr;
     while (temp->lPrev != NULL)
@@ -340,7 +340,7 @@ int lchange(list *listptr, int index, int value)
     temp->lValue = value;
     return 0;
 }
-int llength(list *listptr)
+int llength(list *listptr) // COMPLETE
 {
     list *temp = listptr;
     int length = 0;
@@ -351,7 +351,7 @@ int llength(list *listptr)
     }
     return length;
 }
-bool lcontains(list *listptr, double value)
+bool lcontains(list *listptr, double value) // COMPLETE
 {
     list *temp = listptr;
     while (temp != NULL)
@@ -364,7 +364,7 @@ bool lcontains(list *listptr, double value)
     }
     return false;
 }
-int lreverse(list *listptr)
+int lreverse(list *listptr) // COMPLETE
 {
     list *tempA = listptr, *tempB = listptr;
     int length = 0;
@@ -386,7 +386,7 @@ int lreverse(list *listptr)
 }
 
 // Math functions
-double root(double radicand, double index)
+double root(double radicand, double index) // COMPLETE
 {
     return pow(radicand, 1 / index);
 }

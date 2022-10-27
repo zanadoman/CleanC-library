@@ -15,6 +15,12 @@ int main()
     // arrayfunctions();
     // listfunctions();
     // mathfunctions();
+    int a[] = {3, 2, 5, 1, 8, 7, 6, 9, 0, 4};
+    asort(a, a + 9, INT);
+    for (int i = 0; i < 10; i++)
+    {
+        printf("%d ", a[i]);
+    }
 }
 
 int iofunctions()
