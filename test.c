@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <time.h>
 #include "cleanc.h"
 
 int iofunctions();
@@ -14,7 +15,6 @@ int main()
     // arrayfunctions();
     // listfunctions();
     // mathfunctions();
-    return 0;
 }
 
 int iofunctions()

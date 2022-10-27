@@ -47,6 +47,7 @@ int swap(void *a, void *b, char type);
 
 // Array functions
 int areverse(array *a);
+int asort(void *first, void *last, char type);
 long strint(char *a);
 double strdouble(char *a);
 

@@ -169,6 +169,31 @@ int areverse(array *a)
     }
     return 1;
 }
+int asort(void *first, void *last, char type) // TODO quicksort function for array
+{
+    if (type == 3 && first < last)
+    {
+        int temp;
+        int *tempFirst = (int *)first - 1;
+        int pivot = *(int *)last;
+        for (int *i = (int *)first; i <= (int *)last; i++)
+        {
+            if (*i < pivot)
+            {
+                tempFirst++;
+                temp = *tempFirst;
+                *tempFirst = *i;
+                *i = temp;
+            }
+        }
+        temp = *(tempFirst + 1);
+        *(tempFirst + 1) = *(int *)last;
+        *(int *)last = temp;    
+        asort(first, tempFirst, 3);
+        asort(tempFirst + 2, last, 3);
+    }
+    return 0;
+}
 long strint(char *string)
 {
     double result = 0, powskip = 1;
