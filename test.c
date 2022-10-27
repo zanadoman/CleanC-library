@@ -13,7 +13,7 @@ int main()
     // iofunctions();
     // variablefunctions();
     // arrayfunctions();
-     listfunctions();
+    // listfunctions();
     // mathfunctions();
 }
 
@@ -49,7 +49,7 @@ int arrayfunctions()
     }
 
     printf("\nReversing the array:\n");
-    areverse(a, a + sizeof(a) / sizeof(int) - 1, INT);
+    areverse(&a[0], &a[4], INT);
     for (int i = 0; i < sizeof(a) / sizeof(int); i++)
     {
         printf("%d ", a[i]);

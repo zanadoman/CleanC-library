@@ -32,44 +32,44 @@ int scanvoid() // COMPLETE
 }
 
 // Variable functions declarations
-int swap(void *a, void *b, char size) // COMPLETE
+int swap(void *a, void *b, char type) // COMPLETE
 {
-    if (size == 1)
+    if (type == 1)
     {
         char temp = *(char *)a;
         *(char *)a = *(char *)b;
         *(char *)b = temp;
         return 0;
     }
-    else if (size == 2)
+    else if (type == 2)
     {
         short temp = *(short *)a;
         *(short *)a = *(short *)b;
         *(short *)b = temp;
         return 0;
     }
-    else if (size == 3)
+    else if (type == 3)
     {
         int temp = *(int *)a;
         *(int *)a = *(int *)b;
         *(int *)b = temp;
         return 0;
     }
-    else if (size == 4)
+    else if (type == 4)
     {
         long temp = *(long *)a;
         *(long *)a = *(long *)b;
         *(long *)b = temp;
         return 0;
     }
-    else if (size == 5)
+    else if (type == 5)
     {
         float temp = *(float *)a;
         *(float *)a = *(float *)b;
         *(float *)b = temp;
         return 0;
     }
-    else if (size == 6)
+    else if (type == 6)
     {
         double temp = *(double *)a;
         *(double *)a = *(double *)b;
@@ -80,9 +80,22 @@ int swap(void *a, void *b, char size) // COMPLETE
 }
 
 // Array functions declarations
-int areverse(void *first, void *last, char type) // COMPLETE
+int areverse(void *first, void *last, char type) // FIXME
 {
-    if (type == 3)
+    if (type == 1)
+    {
+        char temp;
+        char *tempA = first;
+        char *tempB = last;
+        for (; tempA < tempB; tempA++, tempB--)
+        {
+            temp = *tempA;
+            *tempA = *tempB;
+            *tempB = temp;
+        }
+        return 0;
+    }
+    else if (type == 3)
     {
         int temp;
         int *tempA = first;
@@ -97,7 +110,7 @@ int areverse(void *first, void *last, char type) // COMPLETE
     }
     return 1;
 }
-int asort(void *first, void *last, char type) // COMPLETE
+int asort(void *first, void *last, char type) // FIXME
 {
     if (type == 3 && first < last)
     {
