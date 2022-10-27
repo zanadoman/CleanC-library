@@ -50,7 +50,7 @@ double lvalue(list *listptr, int index);
 int lchange(list *listptr, int index, int value);
 int llength(list *listptr);
 bool lcontains(list *listptr, double value);
-int lreverse(list *listptr);
+int lreverse(list *listptr, int first, int last);
 
 // Math functions
 double root(double radicand, double index);

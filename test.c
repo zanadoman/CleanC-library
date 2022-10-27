@@ -13,15 +13,8 @@ int main()
     // iofunctions();
     // variablefunctions();
     // arrayfunctions();
-    // listfunctions();
+     listfunctions();
     // mathfunctions();
-    int a[] = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-    asort(a + 2, a + 7, INT);
-    //areverse(a, a + 9, INT);
-    for (int i = 0; i < 10; i++)
-    {
-        printf("%d ", a[i]);
-    }
 }
 
 int iofunctions()
@@ -107,7 +100,7 @@ int listfunctions()
         printf("%lf ", lvalue(testlist, i));
     }
 
-    lreverse(testlist);
+    lreverse(testlist, 0, llength(testlist) - 1);
     printf("\nReversing the list:\n");
     for (int i = 0; i < llength(testlist); i++)
     {

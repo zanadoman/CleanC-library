@@ -13,7 +13,7 @@ and to make C a clean and modern programming language. */
 #define false 0
 typedef char bool;
 
-// List definition // COMPLETE List def
+// List definition // COMPLETE
 struct listNode
 {
     double lValue;
@@ -191,28 +191,27 @@ int ladd(list **listptr, double value) // COMPLETE
 }
 int linsert(list *listptr, int index, double value) // COMPLETE
 {
-    list *nodeInsertAfter = listptr;
-    while (nodeInsertAfter->lPrev != NULL)
+    while (listptr->lPrev != NULL)
     {
-        nodeInsertAfter = nodeInsertAfter->lPrev;
+        listptr = listptr->lPrev;
     }
     for (int i = 0; i < index; i++)
     {
-        nodeInsertAfter = nodeInsertAfter->lNext;
+        listptr = listptr->lNext;
     }
     list *nodeNew = malloc(sizeof(struct listNode));
     nodeNew->lValue = value;
-    if (nodeInsertAfter->lPrev == NULL)
+    if (listptr->lPrev == NULL)
     {
-        nodeNew->lNext = nodeInsertAfter;
+        nodeNew->lNext = listptr;
         nodeNew->lPrev = NULL;
-        nodeInsertAfter->lPrev = nodeNew;
+        listptr->lPrev = nodeNew;
     }
     else
     {
-        nodeNew->lNext = nodeInsertAfter;
-        nodeNew->lPrev = nodeInsertAfter->lPrev;
-        nodeInsertAfter->lPrev = nodeNew;
+        nodeNew->lNext = listptr;
+        nodeNew->lPrev = listptr->lPrev;
+        listptr->lPrev = nodeNew;
         nodeNew->lPrev->lNext = nodeNew;
     }
 }
@@ -244,72 +243,75 @@ int lremove(list **listptr, int index) // COMPLETE
 }
 double lvalue(list *listptr, int index) // COMPLETE
 {
-    list *temp = listptr;
-    while (temp->lPrev != NULL)
+    while (listptr->lPrev != NULL)
     {
-        temp = temp->lPrev;
+        listptr = listptr->lPrev;
     }
     for (int i = 0; i < index; i++)
     {
-        temp = temp->lNext;
+        listptr = listptr->lNext;
     }
-    return temp->lValue;
+    return listptr->lValue;
 }
 int lchange(list *listptr, int index, int value) // COMPLETE
 {
-    list *temp = listptr;
-    while (temp->lPrev != NULL)
+    while (listptr->lPrev != NULL)
     {
-        temp = temp->lPrev;
+        listptr = listptr->lPrev;
     }
     for (int i = 0; i < index; i++)
     {
-        temp = temp->lNext;
+        listptr = listptr->lNext;
     }
-    temp->lValue = value;
+    listptr->lValue = value;
     return 0;
 }
 int llength(list *listptr) // COMPLETE
 {
-    list *temp = listptr;
     int length = 0;
-    while (temp != NULL)
+    while (listptr != NULL)
     {
         length++;
-        temp = temp->lPrev;
+        listptr = listptr->lPrev;
     }
     return length;
 }
 bool lcontains(list *listptr, double value) // COMPLETE
 {
-    list *temp = listptr;
-    while (temp != NULL)
+    while (listptr != NULL)
     {
-        if (temp->lValue == value)
+        if (listptr->lValue == value)
         {
             return true;
         }
-        temp = temp->lPrev;
+        listptr = listptr->lPrev;
     }
     return false;
 }
-int lreverse(list *listptr) // COMPLETE
+int lreverse(list *listptr, int first, int last) // COMPLETE
 {
-    list *tempA = listptr, *tempB = listptr;
-    int length = 0;
-    double a, b, temp;
-    while (tempB->lPrev != NULL)
+    list *tempA, *tempB;
+    double temp;
+    while (listptr->lPrev != NULL)
     {
-        length++;
-        tempB = tempB->lPrev;
+        listptr = listptr->lPrev;
     }
-    for (int i = 0; i < length / 2; i++)
+    tempA = tempB = listptr;
+    for (int i = 0; i < first; i++)
+    {
+        tempA = tempA->lNext;
+    }
+    for (int i = 0; i < last; i++)
+    {
+        tempB = tempB->lNext;
+    }
+    for (int i = 0; i < (last - first + 1) >> 1; i++)
     {
         temp = tempA->lValue;
         tempA->lValue = tempB->lValue;
         tempB->lValue = temp;
-        tempA = tempA->lPrev;
-        tempB = tempB->lNext;
+        tempA = tempA->lNext;
+        tempB = tempB->lPrev;
     }
     return 0;
 }
