@@ -80,13 +80,26 @@ int swap(void *a, void *b, char type) // COMPLETE
 }
 
 // Array functions declarations
-int areverse(void *first, void *last, char type) // FIXME
+int areverse(void *first, void *last, char type) // COMPLETE
 {
     if (type == 1)
     {
         char temp;
         char *tempA = first;
         char *tempB = last;
+        for (; tempA < tempB; tempA++, tempB--)
+        {
+            temp = *tempA;
+            *tempA = *tempB;
+            *tempB = temp;
+        }
+        return 0;
+    }
+    else if (type == 2)
+    {
+        short temp;
+        short *tempA = first;
+        short *tempB = last;
         for (; tempA < tempB; tempA++, tempB--)
         {
             temp = *tempA;
@@ -108,11 +121,94 @@ int areverse(void *first, void *last, char type) // FIXME
         }
         return 0;
     }
+    else if (type == 4)
+    {
+        long temp;
+        long *tempA = first;
+        long *tempB = last;
+        for (; tempA < tempB; tempA++, tempB--)
+        {
+            temp = *tempA;
+            *tempA = *tempB;
+            *tempB = temp;
+        }
+        return 0;
+    }
+    else if (type == 5)
+    {
+        float temp;
+        float *tempA = first;
+        float *tempB = last;
+        for (; tempA < tempB; tempA++, tempB--)
+        {
+            temp = *tempA;
+            *tempA = *tempB;
+            *tempB = temp;
+        }
+        return 0;
+    }
+    else if (type == 6)
+    {
+        double temp;
+        double *tempA = first;
+        double *tempB = last;
+        for (; tempA < tempB; tempA++, tempB--)
+        {
+            temp = *tempA;
+            *tempA = *tempB;
+            *tempB = temp;
+        }
+        return 0;
+    }
     return 1;
 }
-int asort(void *first, void *last, char type) // FIXME
+int asort(void *first, void *last, char type) // COMPLETE
 {
-    if (type == 3 && first < last)
+    if (type == 1 && first < last)
+    {
+        char temp;
+        char *tempFirst = (char *)first - 1;
+        char pivot = *(char *)last;
+        for (char *i = (char *)first; i <= (char *)last; i++)
+        {
+            if (*i < pivot)
+            {
+                tempFirst++;
+                temp = *tempFirst;
+                *tempFirst = *i;
+                *i = temp;
+            }
+        }
+        temp = *(tempFirst + 1);
+        *(tempFirst + 1) = *(char *)last;
+        *(char *)last = temp;
+        asort(first, tempFirst, 3);
+        asort(tempFirst + 2, last, 3);
+        return 0;
+    }
+    else if (type == 2 && first < last)
+    {
+        short temp;
+        short *tempFirst = (short *)first - 1;
+        short pivot = *(short *)last;
+        for (short *i = (short *)first; i <= (short *)last; i++)
+        {
+            if (*i < pivot)
+            {
+                tempFirst++;
+                temp = *tempFirst;
+                *tempFirst = *i;
+                *i = temp;
+            }
+        }
+        temp = *(tempFirst + 1);
+        *(tempFirst + 1) = *(short *)last;
+        *(short *)last = temp;
+        asort(first, tempFirst, 3);
+        asort(tempFirst + 2, last, 3);
+        return 0;
+    }
+    else if (type == 3 && first < last)
     {
         int temp;
         int *tempFirst = (int *)first - 1;
@@ -130,6 +226,72 @@ int asort(void *first, void *last, char type) // FIXME
         temp = *(tempFirst + 1);
         *(tempFirst + 1) = *(int *)last;
         *(int *)last = temp;
+        asort(first, tempFirst, 3);
+        asort(tempFirst + 2, last, 3);
+        return 0;
+    }
+    else if (type == 4 && first < last)
+    {
+        long temp;
+        long *tempFirst = (long *)first - 1;
+        long pivot = *(long *)last;
+        for (long *i = (long *)first; i <= (long *)last; i++)
+        {
+            if (*i < pivot)
+            {
+                tempFirst++;
+                temp = *tempFirst;
+                *tempFirst = *i;
+                *i = temp;
+            }
+        }
+        temp = *(tempFirst + 1);
+        *(tempFirst + 1) = *(long *)last;
+        *(long *)last = temp;
+        asort(first, tempFirst, 3);
+        asort(tempFirst + 2, last, 3);
+        return 0;
+    }
+    else if (type == 5 && first < last)
+    {
+        float temp;
+        float *tempFirst = (float *)first - 1;
+        float pivot = *(float *)last;
+        for (float *i = (float *)first; i <= (float *)last; i++)
+        {
+            if (*i < pivot)
+            {
+                tempFirst++;
+                temp = *tempFirst;
+                *tempFirst = *i;
+                *i = temp;
+            }
+        }
+        temp = *(tempFirst + 1);
+        *(tempFirst + 1) = *(float *)last;
+        *(float *)last = temp;
+        asort(first, tempFirst, 3);
+        asort(tempFirst + 2, last, 3);
+        return 0;
+    }
+    else if (type == 6 && first < last)
+    {
+        double temp;
+        double *tempFirst = (double *)first - 1;
+        double pivot = *(double *)last;
+        for (double *i = (double *)first; i <= (double *)last; i++)
+        {
+            if (*i < pivot)
+            {
+                tempFirst++;
+                temp = *tempFirst;
+                *tempFirst = *i;
+                *i = temp;
+            }
+        }
+        temp = *(tempFirst + 1);
+        *(tempFirst + 1) = *(double *)last;
+        *(double *)last = temp;
         asort(first, tempFirst, 3);
         asort(tempFirst + 2, last, 3);
         return 0;
