@@ -520,15 +520,23 @@ int llength(list *listptr) // COMPLETE
     }
     return length;
 }
-bool lcontains(list *listptr, double value) // COMPLETE
+bool lcontains(list *listptr, int first, int last, double value) // COMPLETE
 {
-    while (listptr != NULL)
+    while (listptr->lPrev != NULL)
+    {
+        listptr = listptr->lPrev;
+    }
+    for (int i = 0; i < first; i++)
+    {
+        listptr = listptr->lNext;
+    }
+    for (int i = 0; i < last - first + 1; i++)
     {
         if (listptr->lValue == value)
         {
             return true;
         }
-        listptr = listptr->lPrev;
+        listptr = listptr->lNext;
     }
     return false;
 }

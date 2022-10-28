@@ -15,11 +15,12 @@ int main()
     // arrayfunctions();
     // listfunctions();
     // mathfunctions();
-    randinit();
+    list *lista = NULL;
     for (int i = 0; i < 10; i++)
     {
-        printf("%ld ", random(-2, 1));
+        ladd(&lista, i);
     }
+    printf("%d", lcontains(lista, 0, 9, 5));
 }
 
 int iofunctions()
@@ -111,7 +112,7 @@ int listfunctions()
     {
         printf("%lf ", lvalue(testlist, i));
     }
-    printf("\nContent examination: 35?: %d, 49?: %d\n", lcontains(testlist, 35), lcontains(testlist, 49));
+    //printf("\nContent examination: 35?: %d, 49?: %d\n", lcontains(testlist, 35), lcontains(testlist, 49));
 
     return 0;
 }

@@ -14,7 +14,6 @@ and to make C a clean and modern programming language. */
 #define FLOAT 5
 #define DOUBLE 6
 
-
 // Bool definition
 #define true 1
 #define false 0
@@ -51,7 +50,7 @@ int lremove(list **listptr, int index);
 double lvalue(list *listptr, int index);
 int lchange(list *listptr, int index, int value);
 int llength(list *listptr);
-bool lcontains(list *listptr, double value);
+bool lcontains(list *listptr, int first, int last, double value);
 int lreverse(list *listptr, int first, int last);
 
 // Math functions
