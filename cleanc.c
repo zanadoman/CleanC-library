@@ -14,7 +14,7 @@ and to make C a clean and modern programming language. */
 #define false 0
 typedef char bool;
 
-// List definition // COMPLETE
+// List definition // COMPLETE listdef
 struct listNode
 {
     double lValue;
@@ -25,7 +25,7 @@ typedef struct listNode list;
 
 
 // IO functions
-int scanvoid() // COMPLETE
+int scanvoid() // COMPLETE scanvoid
 {
     while (getchar() != '\n')
         ;
@@ -33,7 +33,7 @@ int scanvoid() // COMPLETE
 }
 
 // Variable functions declarations
-int swap(void *a, void *b, char type) // COMPLETE
+int swap(void *a, void *b, char type) // COMPLETE swap
 {
     if (type == 1)
     {
@@ -81,7 +81,7 @@ int swap(void *a, void *b, char type) // COMPLETE
 }
 
 // Array functions declarations
-bool acontint(void *first, void *last, int value, char type) // COMPLETE
+bool acontint(void *first, void *last, int value, char type) // COMPLETE acontint
 {
     if (type == 1)
     {
@@ -125,7 +125,7 @@ bool acontint(void *first, void *last, int value, char type) // COMPLETE
     }
     return false;
 }
-bool acontdouble(void *first, void *last, int value, char type) // COMPLETE
+bool acontdouble(void *first, void *last, int value, char type) // COMPLETE acontdouble
 {
     if (type == 5)
     {
@@ -149,7 +149,7 @@ bool acontdouble(void *first, void *last, int value, char type) // COMPLETE
     }
     return false;
 }
-int areverse(void *first, void *last, char type) // COMPLETE
+int areverse(void *first, void *last, char type) // COMPLETE areverse
 {
     if (type == 1)
     {
@@ -231,7 +231,7 @@ int areverse(void *first, void *last, char type) // COMPLETE
     }
     return 1;
 }
-int asort(void *first, void *last, char type) // COMPLETE
+int asort(void *first, void *last, char type) // COMPLETE asort
 {
     if (type == 1 && first < last)
     {
@@ -367,7 +367,7 @@ int asort(void *first, void *last, char type) // COMPLETE
     }
     return 1;
 }
-long strint(char *string) // COMPLETE
+long strint(char *string) // COMPLETE strint
 {
     double result = 0, powskip = 1;
     char *size = string;
@@ -390,7 +390,7 @@ long strint(char *string) // COMPLETE
     }
     return result;
 }
-double strdouble(char *string) // COMPLETE
+double strdouble(char *string) // COMPLETE strdouble
 {
     double result = 0, powskip = 1;
     int floatingpoint = 1;
@@ -420,7 +420,7 @@ double strdouble(char *string) // COMPLETE
 }
 
 // List functions
-int ladd(list **listptr, double value) // COMPLETE
+int ladd(list **listptr, double value) // COMPLETE ladd
 {
     list *nodeNew = malloc(sizeof(struct listNode));
     nodeNew->lValue = value;
@@ -433,7 +433,7 @@ int ladd(list **listptr, double value) // COMPLETE
     *listptr = nodeNew;
     return 0;
 }
-int linsert(list *listptr, int index, double value) // COMPLETE
+int linsert(list *listptr, int index, double value) // COMPLETE linsert
 {
     while (listptr->lPrev != NULL)
     {
@@ -459,7 +459,7 @@ int linsert(list *listptr, int index, double value) // COMPLETE
         nodeNew->lPrev->lNext = nodeNew;
     }
 }
-int lremove(list **listptr, int index) // COMPLETE
+int lremove(list **listptr, int index) // COMPLETE lremove
 {
     list *nodeToRemove = *listptr;
     while (nodeToRemove->lPrev != NULL)
@@ -485,7 +485,7 @@ int lremove(list **listptr, int index) // COMPLETE
     nodeToRemove->lNext = nodeToRemove->lPrev = NULL;
     return 0;
 }
-double lvalue(list *listptr, int index) // COMPLETE
+double lvalue(list *listptr, int index) // COMPLETE lvalue
 {
     while (listptr->lPrev != NULL)
     {
@@ -497,7 +497,7 @@ double lvalue(list *listptr, int index) // COMPLETE
     }
     return listptr->lValue;
 }
-int lchange(list *listptr, int index, int value) // COMPLETE
+int lchange(list *listptr, int index, int value) // COMPLETE lchange
 {
     while (listptr->lPrev != NULL)
     {
@@ -510,7 +510,7 @@ int lchange(list *listptr, int index, int value) // COMPLETE
     listptr->lValue = value;
     return 0;
 }
-int llength(list *listptr) // COMPLETE
+int llength(list *listptr) // COMPLETE llength
 {
     int length = 0;
     while (listptr != NULL)
@@ -520,7 +520,7 @@ int llength(list *listptr) // COMPLETE
     }
     return length;
 }
-bool lcontains(list *listptr, int first, int last, double value) // COMPLETE
+bool lcontains(list *listptr, int first, int last, double value) // COMPLETE lcontains
 {
     while (listptr->lPrev != NULL)
     {
@@ -540,7 +540,7 @@ bool lcontains(list *listptr, int first, int last, double value) // COMPLETE
     }
     return false;
 }
-int lreverse(list *listptr, int first, int last) // COMPLETE
+int lreverse(list *listptr, int first, int last) // COMPLETE lreverse
 {
     list *tempA, *tempB;
     double temp;
@@ -569,16 +569,16 @@ int lreverse(list *listptr, int first, int last) // COMPLETE
 }
 
 // Math functions
-int randinit() // COMPLETE
+int randinit() // COMPLETE randinit
 {
     srand(time(0));
     return 0;
 }
-long random(long min, long max) // COMPLETE
+long random(long min, long max) // COMPLETE random
 {
     return (rand() % (max - min + 1)) + min;
 }
-double root(double radicand, double index) // COMPLETE
+double root(double radicand, double index) // COMPLETE root
 {
     return pow(radicand, 1 / index);
 }
