@@ -15,12 +15,6 @@ int main()
     // arrayfunctions();
     // listfunctions();
     // mathfunctions();
-    list *lista = NULL;
-    for (int i = 0; i < 10; i++)
-    {
-        ladd(&lista, i);
-    }
-    printf("%d", lcontains(lista, 0, 9, 5));
 }
 
 int iofunctions()
@@ -46,9 +40,17 @@ int variablefunctions()
 
 int arrayfunctions()
 {
-    int a[] = {1, 2, 3, 4, 5};
+    int a[] = {3, 2, 5, 1, 4};
 
     printf("Testing the array:\n");
+    for (int i = 0; i < sizeof(a) / sizeof(int); i++)
+    {
+        printf("%d ", a[i]);
+    }
+
+
+    printf("\nSort the array in ascending order:\n");
+    asort(&a[0], &a[4], INT);
     for (int i = 0; i < sizeof(a) / sizeof(int); i++)
     {
         printf("%d ", a[i]);
@@ -60,6 +62,8 @@ int arrayfunctions()
     {
         printf("%d ", a[i]);
     }
+
+    printf("\nContent examination: 4?: %d, 7?: %d\n", acontint(&a[0], &a[4], 4, INT), acontint(&a[0], &a[4], 7, INT));
 
     char intstring[] = "34543";
     printf("\nConverting string(34543) to int: %d\n", strint(intstring));
@@ -112,14 +116,20 @@ int listfunctions()
     {
         printf("%lf ", lvalue(testlist, i));
     }
-    //printf("\nContent examination: 35?: %d, 49?: %d\n", lcontains(testlist, 35), lcontains(testlist, 49));
+    printf("\nContent examination: 35?: %d, 49?: %d\n", lcontains(testlist, 0, llength(testlist) - 1, 35), lcontains(testlist, 0, llength(testlist) - 1, 49));
 
     return 0;
 }
 
 int mathfunctions()
 {
-    printf("5th root of 248832:\n%lf\n", root(248832, 5));
+    printf("10 Random number in [8; 12] interval:\n");
+    randinit();
+    for (int i = 0; i < 10; i++)
+    {
+        printf("%d ", random(8, 12));
+    }
+    printf("\n5th root of 248832:\n%lf\n", root(248832, 5));
 
     return 0;
 }
