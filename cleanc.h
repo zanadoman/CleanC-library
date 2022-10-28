@@ -37,6 +37,8 @@ int scanvoid();
 int swap(void *a, void *b, char type);
 
 // Array functions
+bool acontint(void *first, void *last, int value, char type);
+bool acontdouble(void *first, void *last, int value, char type);
 int areverse(void *first, void *last, char type);
 int asort(void *first, void *last, char type);
 long strint(char *a);
@@ -53,6 +55,8 @@ bool lcontains(list *listptr, double value);
 int lreverse(list *listptr, int first, int last);
 
 // Math functions
+int randinit();
+long random(long min, long max);
 double root(double radicand, double index);
 
 

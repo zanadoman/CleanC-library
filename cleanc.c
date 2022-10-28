@@ -7,6 +7,7 @@ and to make C a clean and modern programming language. */
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <time.h>
 
 // Bool definition
 #define true 1
@@ -80,6 +81,74 @@ int swap(void *a, void *b, char type) // COMPLETE
 }
 
 // Array functions declarations
+bool acontint(void *first, void *last, int value, char type) // COMPLETE
+{
+    if (type == 1)
+    {
+        for (; first <= last; first++)
+        {
+            if (*(char *)first == value)
+            {
+                return true;
+            }
+        }
+    }
+    else if (type == 2)
+    {
+        for (; first <= last; first++)
+        {
+            if (*(short *)first == value)
+            {
+                return true;
+            }
+        }
+    }
+    else if (type == 3)
+    {
+        for (; first <= last; first++)
+        {
+            if (*(int *)first == value)
+            {
+                return true;
+            }
+        }
+    }
+    else if (type == 4)
+    {
+        for (; first <= last; first++)
+        {
+            if (*(long *)first == value)
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+bool acontdouble(void *first, void *last, int value, char type) // COMPLETE
+{
+    if (type == 5)
+    {
+        for (; first <= last; first++)
+        {
+            if (*(float *)first == value)
+            {
+                return true;
+            }
+        }
+    }
+    if (type == 6)
+    {
+        for (; first <= last; first++)
+        {
+            if (*(double *)first == value)
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 int areverse(void *first, void *last, char type) // COMPLETE
 {
     if (type == 1)
@@ -492,6 +561,15 @@ int lreverse(list *listptr, int first, int last) // COMPLETE
 }
 
 // Math functions
+int randinit() // COMPLETE
+{
+    srand(time(0));
+    return 0;
+}
+long random(long min, long max) // COMPLETE
+{
+    return (rand() % (max - min + 1)) + min;
+}
 double root(double radicand, double index) // COMPLETE
 {
     return pow(radicand, 1 / index);

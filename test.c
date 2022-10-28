@@ -15,6 +15,11 @@ int main()
     // arrayfunctions();
     // listfunctions();
     // mathfunctions();
+    randinit();
+    for (int i = 0; i < 10; i++)
+    {
+        printf("%ld ", random(-2, 1));
+    }
 }
 
 int iofunctions()
